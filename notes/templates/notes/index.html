@@ -1,7 +1,7 @@
 {%load staticfiles%}
 
 <link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
-<h2>Total number of notes: {{total}}</h2>
+<h2 style="font-family:arial;">Total number of notes: {{total}}</h2>
 {% if notes %}
     {% for note in notes %}
         <a href={%url 'detail' note.id %}>

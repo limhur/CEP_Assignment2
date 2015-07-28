@@ -1,9 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from .models import Note
 import re
 from django.db.models import Q
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from notes.forms import NoteForm
+from django.views.generic import DetailView
+
+
+class NoteCreate(CreateView):
+    model = Note
+    form_class = NoteForm
+    
+class NoteUpdate(UpdateView):
+    model = Note
+    form_class = NoteForm
+    
+class NoteDetail(DetailView):
+    model = Note
+    
+class NoteDelete(DeleteView):
+    model = Note
+    
+    success_url = reverse_lazy('listall')
+
 
 def notes_list(request, folder):
     if folder == "":

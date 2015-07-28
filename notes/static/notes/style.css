@@ -2,6 +2,19 @@
 * { box-sizing:border-box; }
 body { background:url(media/little_pluses.png) #cacaca; margin:30px; }
 
+h1  {
+	text-align: center;
+	font-size: 48px;
+}
+
+h2  {
+	text-align: center;
+	font-size: 40px;
+}
+
+p {
+    font-family: "Arial", "helvetica", sans-serif;
+}
 .postit  { 
 	display: block;
 	padding:25px 25px 40px;

@@ -1,4 +1,6 @@
 from django.db import models
+from django.views.generic import ListView 
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Note(models.Model):
@@ -18,7 +20,20 @@ class Note(models.Model):
     def __str__(self):
         return self.title
     
-        
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"pk":self.pk})
+
+class NoteList(ListView):
+    #https://docs.djangoproject.com/en/1.7/topics/class-based-views/generic-display/
+    model = Note
+    
+    def get_queryset(self):
+        folder = self.kwargs['folder']
+        if folder == '':
+            return Note.objects.all()
+        else:
+            return Note.objects.filter(folder__title__iexact=folder)
+
 
 class Folder(models.Model):
     title = models.CharField(max_length=255)
